@@ -36,40 +36,20 @@ The dataset contians public LinkedIn data from around 140 individuals who have b
 
 I loaded the data into a Pandas dataframe. All the data is contained in one column in JSON format, so I took steps to extract and flatten the JSON data, before creating a new dataframe with separate columns for each data point. 
 
-Next, I reviewed how many columns were partially complete, with a view to removing columns that would not be useful for analysis. I found that the courses and social_groups columns were completely empty, so they could be excluded from the cleaned dataframe. I also decided to delete the patents, about_me, also_viewed, cover_image_url, image_url, recommendations, related_courses, similar_names, social_url, websites, publications and projects columns, as they were either mostly unpopulated or not useful for analysis.
+Next, I reviewed how many columns were partially complete, with a view to removing columns that would not be useful for analysis. I found that the _courses_ and _social_groups_ columns were completely empty, so they could be excluded from the cleaned dataframe. I also decided to delete the _patents_, _about_me_, _also_viewed_, _cover_image_url_, _image_url_, _recommendations_, _related_courses_, _similar_names_, _social_url_, _websites_, _publications_ and _projects columns_, as they were either mostly unpopulated or not useful for analysis.
 
-I then observed that 4 columns (certifications, education, experience, and working_for) contained lists of dictionaries. The list of dictionaries need to be separated to allow for data analysis and visualisation. 
+The dataframe with columns removed is referred to as df_cleaned.
+
+I then observed that 4 columns (_certifications_, _education_, _experience_, and _working_for_ contained lists of dictionaries. The list of dictionaries need to be separated to allow for data analysis and visualisation. 
 
 ### 3.1 Writing a function to expand a column containing lists of dictionaries into multiple columns<a name="sec3p1"></a>
 
-This function is applied to each column that has been identified as containing a list of dictionaries. It runs through each row in the defined column and identifies if the cell contains a list. If the cell does, the function loops through the the first 5 key-value pairs and for each key-value pair creates a flat dictionary where the key is the name of the column and the value is the cell entry. This flat dictionary is stored in a flattened list, which is then converted into a dataframe. 
+This function is applied to each column that has been identified as containing a list of dictionaries. It runs through each row in the defined column and identifies if the cell contains a list. If the cell does, the function loops through the the first 5 key-value pairs and for each key-value pair creates a flat dictionary (expanded_dict[col_name]) where the key is the name of the column (col_name) and the value is the cell entry. This flat dictionary is stored in a flattened list (expanded_rows), which is then converted into a new dataframe (expanded_df). The column that has been expanded is removed from the cleaned dataframe (df_cleaned) to create df_cleaned_1. expanded_df is combined with df_cleaned_1 to create a final dataframe, df_updated.
 
-aDD NAMES TO THINGS HERE FOR A CLEARER EXPLANATION 
+This function was then applied to the _certifications_, _education_, _experience_, and _working_for_ columns. The output of each was reviewed to see if any columns could be removed. 
 
-takes the Credential Issue Date as the reference point. It then looks through the role title columns (current role, previous role etc.) to see which role was held on the Credential Issue Date. It then creates a data point in a new column entitled 'role_on_credential_date' which lists the role title held on the Credential Issue Date.
-
-I cleaned the data so that it contained separate columns for current role and previous role entries. Some individuals listed multiple current/previous roles and so each role was given a separate column. Start and end dates for these associated roles were included in most cases. 
-
-74 individuals did not give a start date for their current role and so I changed this to 1 January 2024, which is more than 12 months after the latest credential issue date. This means it won't affect my results, but I don't have to delete the data row.
-
-Some individuals did not give a start date for their previous role and so I changed this to 0 (converts to a timestamp date of 1970-01-01). This is before Accredible started operating, so it shouldn't affect my results and I don't have to delete the data row. 
-
-Some start/end dates are listed as unix timestamps. These have been converted to a human-readable date (not including time)
-
-The dataset looks like: 
-
-![json](https://github.com/eaheppenstall/Impact-of-credential-on-career-development/blob/main/Images/json%20file%20dataset%20screenshot.png)
-
-### 2.1 Initial steps: data cleaning of the json file <a name="sec2p1"></a>
-### 2.2 Initial steps: data cleaning of the csv file <a name="sec2p2"></a>
-
-I loaded the data into a Pandas dataframe. As I intended to match the dataframes based on surname, I cleaned the dataframe so that surname was captured as a separate column (rather than being included in a fullname column). 
-
-Credential Issue Dates were converted to a human-readable date.
-
-The dataset looks like: 
-
-![csv](https://github.com/eaheppenstall/Impact-of-credential-on-career-development/blob/main/Images/csv%20file%20dataset%20screenshot.png)
+**up tp here**
+**certifications 2, 3 and 4 are unecessary**
 
 ## 4. Writing functions <a name="section4"></a>
 
