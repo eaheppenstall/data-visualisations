@@ -26,7 +26,7 @@ https://github.com/eaheppenstall/data-visualisations
 6. [Next steps](#nextsteps)
 
 ## 1. Introduction <a name="introduction"></a>
-- This README describes how I approached creating visualisations from a set of data. The goal was broad: to identify useful trends or summaries that would be useful for the data owner. Resources used include Python, and associated packages Pandas and Numpy for data cleaning and matplotlib for the visualisations. The analysis can be found at the filename given above.  
+This README describes how I approached creating visualisations from a set of data. The goal was broad: to identify useful trends or summaries that would be useful for the data owner. Resources used include Python, and associated packages Pandas and Numpy for data cleaning and matplotlib for the visualisations. The analysis can be found at the filename given above.  
 
 
 ##  2. Description of the data set <a name="section2"></a>
