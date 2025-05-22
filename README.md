@@ -21,7 +21,7 @@ https://github.com/eaheppenstall/data-visualisations
     2. [Question 2](#sec4p2)
     3. [Question 3](#sec4p3)
 
-5. [Conclusions](#conclusion)
+5. [Conclusion](#conclusion)
     
 6. [Next steps](#nextsteps)
 
@@ -46,31 +46,24 @@ I then observed that 4 columns (_certifications_, _education_, _experience_, and
 
 This function is applied to each column that has been identified as containing a list of dictionaries. It runs through each row in the defined column and identifies if the cell contains a list. If the cell does, the function loops through the the first 5 key-value pairs and for each key-value pair creates a flat dictionary (expanded_dict[col_name]) where the key is the name of the column (col_name) and the value is the cell entry. This flat dictionary is stored in a flattened list (expanded_rows), which is then converted into a new dataframe (expanded_df). The column that has been expanded is removed from the cleaned dataframe (df_cleaned) to create df_cleaned_1. expanded_df is combined with df_cleaned_1 to create a final dataframe, df_updated.
 
-This function was then applied to the _certifications_, _education_, _experience_, and _working_for_ columns. The output of each was reviewed to see if any columns could be removed. 
+This function was then applied to the _certifications_, _education_, _experience_, and _working_for_ columns. The output of each was reviewed to see if any columns could be removed. For the _certifications_ column, data associated with certifications 2, 3 and 4 were removed as most cells were empty. All data in the _education_, _experience_ and _working_for_ columns were retained. 
 
-**up tp here**
-**certifications 2, 3 and 4 are unecessary**
+### 3.2 Joining all new dataframes together<a name="sec3p2"></a>
 
-## 4. Writing functions <a name="section4"></a>
+The data cleaning above produced 4 dataframes: df_cleaned_workingfor, df_cleaned_experience, df_cleaned_education, df_cleaned_certifications. They were joined together and duplicate columns (based on the data contained in the columns) were deleted. The column headings in the final dataframe, df_combined_final, were then reviewed and columms not needed for analysis (_social_url_, _duration_, _image_url_, _job_description_, _social_url_, _duration_1_, _image_url_1_, _job_description_1_, _social_url_1_, _duration_2_, _image_url_2_, _job_description_2_, _social_url_2_, _duration_3_, _image_url_3_, _job_description_3_, _social_url_3_, _duration_4_, _image_url_4_, _job_description_4_, _social_url_4_, _image_url_, _social_url_, _image_url_1_, _social_url_1_, _description_, _description_1_, _certificate_url_, _image_url_, _certificate_url_1_, _image_url_1_, _certificate_url_2_, _image_url_2_, _certificate_url_3_, _image_url_3_, _certificate_url_4_, _image_url_4_) were removed.
 
-### 4.1 Writing a function to determine the job role on the Credential Issue Date <a name="sec4p1"></a>
+Some columns had duplicate names, but not duplicate data. These were then renamed accordingly. 
 
-This function takes the Credential Issue Date as the reference point. It then looks through the role title columns (current role, previous role etc.) to see which role was held on the Credential Issue Date. It then creates a data point in a new column entitled 'role_on_credential_date' which lists the role title held on the Credential Issue Date.
+## 4. Data visualisations <a name="section4"></a>
 
-### 4.2 Writing a function to determine if a role change has occurred during the 12 months following the Credential Issue Date <a name="sec4p2"></a>
+### 4.1 Where are individuals located?<a name="sec4p1"></a>
 
-This function defines the 12 month window for each individual as 12 months after the Credential Issue Date. It then looks to see if a role change has occured within each individual's 12 month window. It returns a list of roles started within the 12 month window, or returns [] where no new role has been started.
+### 4.2 Question 2 <a name="sec4p2"></a>
 
-## 5. Results <a name="section5"></a>
+### 4.3 Question 3 <a name="sec4p3"></a>
 
-The main finding of this analysis is that only 21 roles changed within 12 months of the Credential Issue Date
+## 5. Conclusion<a name="conclusion"></a>
 
-## 6. Conclusion <a name="conclusion"></a>
+The analysis found that.... 
 
-This analysis found that 14% of job roles changed within 12 months of the Credential Issue Date. I would say that this is not a large enough percentage to say that Accredible had an effect on the job role change and that further analysis is needed to draw more solid conclusions. 
-
-## 7. Next Steps <a name="nextsteps"></a>
-
-Further analysis is needed to test this result against a control set (i.e. a group of individuals who haven't interacted with Accredible. Ideally, the control group would be a group of individuals with similar job roles to that in this dataset. 
-
-It would also be interesting to link salary data here, to see how valuable an Accredible credential is.
+## 6. Next steps <a name="nextsteps"></a>
